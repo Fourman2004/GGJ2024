@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+
     public InputMaster input;
     public Rigidbody rigidBody;
 
@@ -16,6 +17,16 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         input = new InputMaster();
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
     }
     // Start is called before the first frame update
     void Start()

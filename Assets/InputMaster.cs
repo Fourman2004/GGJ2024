@@ -53,6 +53,24 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseX"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""cd1bd6d8-da77-4d98-85d8-d6947efb525f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseY"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""3c8ce89a-132a-4c74-b04d-cd4fd62cda27"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -273,6 +291,28 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""663e3c42-964c-4040-8751-e835bceb2f70"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MouseX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7c61947-e909-4f8f-88fa-a89543f9b5f5"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MouseY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -863,6 +903,8 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_MouseX = m_Player.FindAction("MouseX", throwIfNotFound: true);
+        m_Player_MouseY = m_Player.FindAction("MouseY", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -939,6 +981,8 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_MouseX;
+    private readonly InputAction m_Player_MouseY;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -946,6 +990,8 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @MouseX => m_Wrapper.m_Player_MouseX;
+        public InputAction @MouseY => m_Wrapper.m_Player_MouseY;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -964,6 +1010,12 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @MouseX.started += instance.OnMouseX;
+            @MouseX.performed += instance.OnMouseX;
+            @MouseX.canceled += instance.OnMouseX;
+            @MouseY.started += instance.OnMouseY;
+            @MouseY.performed += instance.OnMouseY;
+            @MouseY.canceled += instance.OnMouseY;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -977,6 +1029,12 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @MouseX.started -= instance.OnMouseX;
+            @MouseX.performed -= instance.OnMouseX;
+            @MouseX.canceled -= instance.OnMouseX;
+            @MouseY.started -= instance.OnMouseY;
+            @MouseY.performed -= instance.OnMouseY;
+            @MouseY.canceled -= instance.OnMouseY;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1162,6 +1220,8 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnMouseX(InputAction.CallbackContext context);
+        void OnMouseY(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
