@@ -523,6 +523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 483714381221802748, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
         type: 3}
       propertyPath: m_RootOrder
@@ -576,6 +581,16 @@ PrefabInstance:
     - target: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414771771324228405, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414771771324228405, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
