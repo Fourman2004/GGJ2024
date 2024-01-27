@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEditorInternal;
 using UnityEditor;
 using static UnityEditor.PlayerSettings;
+using UnityEngine.UIElements;
 
 public class AI_Behaviour : MonoBehaviour
 {
@@ -13,25 +14,50 @@ public class AI_Behaviour : MonoBehaviour
     public Rigidbody body;
     public GameObject Projectile;
     public Transform actorToHarm;
+    Vector3 pos;
     public Collider Meleehurtbox;
     public float XEnd, ZEnd, minPlayerDist, maxPlayerDist;
 
     [SerializeField]
     float steps;
 
+    public bool hostile, melee;
+
 
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        pos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsPlayer();
-    }
+        switch (hostile)
+        {
 
+            case false:
+                {
+                    randomMove();
+                    break;
+                }
+            case true:
+                {
+                    if (melee)
+                    {
+                        MoveTowardsPlayer();
+                    }
+                    else
+                    {
+
+
+                    }
+                    break;
+
+                }
+        }
+    }
     public void calculate_speed()
     {
         if (stats.health < 50)
@@ -44,24 +70,32 @@ public class AI_Behaviour : MonoBehaviour
         }
     }
     void randomMove()
-    {
-        Vector3 pos = transform.position;
-        pos = new Vector3(pos.x, pos.y, pos.z);
-        pos.x = Random.Range(1, XEnd);
-        //pos.y = Random.Range(1,YEnd);
-        pos.z = Random.Range(1, ZEnd);
+    { 
+   
         calculate_speed();
-        transform.position = Vector3.MoveTowards(transform.position, pos, steps);
+
+        if (Vector3.Distance(transform.position, pos) <= maxPlayerDist)
+        {
+            pos.x = Random.Range(-XEnd, XEnd);
+            pos.z = Random.Range(-ZEnd, ZEnd);
+            transform.LookAt(pos);
+        }
+        else
+        {
+            transform.position += transform.forward * steps;
+        }
+        
 
     }
 
     void MoveTowardsPlayer()
     {
         transform.LookAt(actorToHarm);
+        calculate_speed();
 
         if (Vector3.Distance(transform.position, actorToHarm.position) >= minPlayerDist)
         {
-            transform.position += transform.forward * steps * Time.deltaTime;
+            transform.position += transform.forward * steps;
         }
         
         if(Vector3.Distance(transform.position, actorToHarm.position) <= maxPlayerDist)
@@ -72,6 +106,9 @@ public class AI_Behaviour : MonoBehaviour
 
     private void OnCollisionEnter()
     {
-      
+      if (gameObject.tag == "player")
+      {
+          
+      }
     }
 }
