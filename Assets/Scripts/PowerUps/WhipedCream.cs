@@ -32,4 +32,11 @@ public class WhipedCream : PowerUps.PowerUps
         maxAmount = 5;
         cooldownAmount = 5;
     }
+
+    protected override void AddPowerUp()
+    {
+        if (maxAmount == currentAmount) { return; };
+        currentAmount++;
+        base.AddPowerUp();
+    }
 }
