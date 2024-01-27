@@ -28,10 +28,7 @@ namespace Weapons
         // Update is called once per frame
         protected virtual void Update()
         {
-            if (weaponAmmo <= 0)
-            {
-                canShootProjectile = false;
-            }
+
         }
 
         protected virtual void Reload()
@@ -44,22 +41,21 @@ namespace Weapons
 
         public virtual void Shooting()
         {
-            if (canShootProjectile)
-            {
-                // instantiate projectile
-                GameObject spawnedProjectile = Instantiate(projectilePrefab.gameObject, shootPoint.position, shootPoint.rotation);
+            if (weaponAmmo == 0) { return; }
 
-                // reference the projectile's rigidbody (get component ewww)
-                Rigidbody projectileRB = spawnedProjectile.GetComponent<Rigidbody>();
+            // instantiate projectile
+            GameObject spawnedProjectile = Instantiate(projectilePrefab.gameObject, shootPoint.position, shootPoint.rotation);
 
-                // add force
-                Vector3 projectileForce = owner.transform.forward * throwForce + transform.up * throwUpForce;
-                projectileRB.AddForce(projectileForce, ForceMode.Impulse);
+            // reference the projectile's rigidbody (get component ewww)
+            Rigidbody projectileRB = spawnedProjectile.GetComponent<Rigidbody>();
 
-                // decreases current ammo
-                weaponAmmo--;
-                shootCooldown = Time.time + shootDelay;
-            }
+            // add force
+            Vector3 projectileForce = owner.transform.forward * throwForce + transform.up * throwUpForce;
+            projectileRB.AddForce(projectileForce, ForceMode.Impulse);
+
+            // decreases current ammo
+            weaponAmmo--;
+            shootCooldown = Time.time + shootDelay;
         }
     }
 }

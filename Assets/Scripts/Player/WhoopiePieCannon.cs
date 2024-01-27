@@ -27,7 +27,7 @@ public class WhoopiePieCannon : Weapons.WeaponController
     {
         if (PlayerController.instance.input.Player.Reload.WasPressedThisFrame())
         {
-
+            base.Reload();
         }
     }
 
