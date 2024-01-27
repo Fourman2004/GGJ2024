@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Ai_stats : MonoBehaviour
 {
-    public float speed, health, meleeDamage, rangeDamage, SprintMultiplier;
+    public float speed, health, SprintMultiplier;
+    public int meleeDamage, rangeDamage;
     public GameObject NPC_The_Guy;
 
     [SerializeField]

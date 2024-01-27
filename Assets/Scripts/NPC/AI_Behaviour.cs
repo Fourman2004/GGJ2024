@@ -13,14 +13,12 @@ public class AI_Behaviour : MonoBehaviour
     public Ai_stats stats;
     public Rigidbody body;
     public GameObject Projectile;
+    public Collider Hurtbox;
     public Transform actorToHarm;
     Vector3 pos;
-    public Collider Meleehurtbox;
+    public Health health;
     public float XEnd, ZEnd, minPlayerDist, maxPlayerDist;
-
-    [SerializeField]
     float steps;
-
     public bool hostile, melee;
 
 
@@ -28,6 +26,7 @@ public class AI_Behaviour : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        Hurtbox = GetComponent<Collider>();
         pos = transform.position;
     }
 
@@ -50,8 +49,8 @@ public class AI_Behaviour : MonoBehaviour
                     }
                     else
                     {
-
-
+                        randomMove();
+                        LaunchProjectile();
                     }
                     break;
 
@@ -70,8 +69,8 @@ public class AI_Behaviour : MonoBehaviour
         }
     }
     void randomMove()
-    { 
-   
+    {
+
         calculate_speed();
 
         if (Vector3.Distance(transform.position, pos) <= maxPlayerDist)
@@ -84,7 +83,14 @@ public class AI_Behaviour : MonoBehaviour
         {
             transform.position += transform.forward * steps;
         }
-        
+
+
+    }
+
+    private void LaunchProjectile()
+    {
+        /*GameObject Clownjectile = Instantiate(Projectile, transform.position, Quaternion.identity);
+        Clownjectile.AddComponent<>();*/
 
     }
 
@@ -97,18 +103,22 @@ public class AI_Behaviour : MonoBehaviour
         {
             transform.position += transform.forward * steps;
         }
-        
-        if(Vector3.Distance(transform.position, actorToHarm.position) <= maxPlayerDist)
-        {
-            Debug.Log("yay!");
-        }
     }
 
-    private void OnCollisionEnter()
+    private void OnCollisionStay(Collision collision)
     {
-      if (gameObject.tag == "player")
-      {
-          
-      }
+        if (collision.gameObject.tag == "Player" && health.currentHealth != 0)
+        {
+            health.currentHealth = health.currentHealth - stats.meleeDamage;
+            if (health.currentHealth <= 0)
+            {
+                Destroy(GameObject.FindWithTag("Player"));
+            }
+
+        }
+        else
+        {
+            Physics.IgnoreCollision(collision.collider, Hurtbox);
+        }
     }
 }
