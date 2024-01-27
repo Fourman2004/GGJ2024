@@ -161,6 +161,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 2600843433914518}
   body: {fileID: 8293721924226975019}
+  Projectile: {fileID: 919132149155446097, guid: b366804acddd4234fa4ae614b14c6f70,
+    type: 3}
+  actorToHarm: {fileID: 483714381221802748, guid: 4b89d7650b9291b49815e14b2e5c5326,
+    type: 3}
+  Meleehurtbox: {fileID: 730213488536373594}
   Location: {x: 0, y: 0, z: 0}
   XEnd: 1000
   ZEnd: 1000
@@ -183,6 +188,7 @@ MonoBehaviour:
   SprintMultiplier: 2
   NPC_The_Guy: {fileID: 2847194442442900215}
   NPC: {fileID: 1465931907839097771}
+  Behaviour: {fileID: 7664608066525452545}
 --- !u!54 &8293721924226975019
 Rigidbody:
   m_ObjectHideFlags: 0
