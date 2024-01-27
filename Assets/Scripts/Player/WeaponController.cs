@@ -10,37 +10,31 @@ namespace Weapons
 
         [Header("Shooting based weapons")]
         public Projectile projectilePrefab;
-        //protected GameObject spawnedProjectile;
         public Transform shootPoint;
         protected int weaponAmmo;
         public int weaponMagSize;
         protected bool canShootProjectile = true;
-        public float throwCooldown;
+        public float shootDelay;
+        protected float shootCooldown;
         public float throwForce;
         public float throwUpForce;
 
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             weaponAmmo = weaponMagSize;
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
 
         }
 
-        protected virtual void Reload()
+        protected virtual void Shooting()
         {
-            weaponAmmo = weaponMagSize;
-            // want a timer here
+            if (weaponAmmo == 0) { return; }
 
-            canShootProjectile = true;
-        }
-
-        public virtual void Shooting()
-        {
             // instantiate projectile
             GameObject spawnedProjectile = Instantiate(projectilePrefab.gameObject, shootPoint.position, shootPoint.rotation);
 
@@ -50,8 +44,29 @@ namespace Weapons
             // add force
             Vector3 projectileForce = owner.transform.forward * throwForce + transform.up * throwUpForce;
             projectileRB.AddForce(projectileForce, ForceMode.Impulse);
+
             // decreases current ammo
             weaponAmmo--;
+            shootCooldown = Time.time + shootDelay;
+        }
+
+        protected virtual void Reload()
+        {
+            Debug.Log("Reload occured");
+            weaponAmmo = weaponMagSize;
+            // want a timer here
+        }
+
+        protected IEnumerator ReloadTimer(float time)
+        {
+            Debug.Log("Reloading");
+            yield return new WaitForSeconds(time);
+            Reload();
+        }
+
+        protected virtual void Melee()
+        {
+
         }
     }
 }
