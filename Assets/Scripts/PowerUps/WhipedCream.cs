@@ -33,6 +33,7 @@ public class WhipedCream : PowerUps.PowerUps
     protected override void AddPowerUp()
     {
         if (maxAmount == PlayerController.instance.whippyCream) { return; };
+        Debug.Log("Picked up whippy cream");
         PlayerController.instance.whippyCream++;
         base.AddPowerUp();
     }

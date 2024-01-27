@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 1f;
     private Vector3 direction;
     public int maxHealth = 150;
-    public int currentHealth; // will change this to get / set function later
+    public int currentHealth = 150; // will change this to get / set function later
 
     [Header("Power up amount")]
     public int whippyCream = 0;
@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         input = new InputMaster();
-        maxHealth = currentHealth;
     }
 
     private void OnEnable()
@@ -44,6 +43,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(this);
+
+        maxHealth = currentHealth;
     }
 
     // Update is called once per frame
