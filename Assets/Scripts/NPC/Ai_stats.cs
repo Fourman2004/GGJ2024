@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Ai_stats : MonoBehaviour
 {
-    public float speed;
-    public float health, damage;
+    public float speed, health, damage, SprintMultiplier;
+    public GameObject NPC_The_Guy;
+
+    [SerializeField]
+    private NPCAnimation NPC;
+    [SerializeField]
+    private AI_Behaviour Behaviour;
     // Start is called before the first frame update
     void Start()
     {
-        
+        NPC = GetComponent<NPCAnimation>();
     }
 
     // Update is called once per frame
@@ -17,9 +22,17 @@ public class Ai_stats : MonoBehaviour
     {
         switch (health)
         {
-            case >= 75:
+            case 0:
+                Destroy(NPC_The_Guy);
                 break;
-            case <= 0:
+            case >= 75:
+                NPC.isWalking = true;
+                NPC.isRunning = false;
+                break;
+            case < 50:
+                NPC.isWalking = true;
+                NPC.isRunning = true;
+                Behaviour.calculate_speed();
                 break;
         }
     }

@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public static Rigidbody rigidbody;
+    public Rigidbody rigidbody;
+
+    public float lifeTime = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject, lifeTime);
     }
 }

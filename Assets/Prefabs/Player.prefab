@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7465199014490539065}
   - component: {fileID: 7305275092700220804}
   - component: {fileID: 1518367455123848738}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 5678067823174050820}
   - {fileID: 2721421397479779738}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5082621160329722917
 MonoBehaviour:
@@ -99,7 +99,19 @@ MonoBehaviour:
     m_ActionId: c8194690-9c32-4c40-ba3e-0a6bbdc208e1
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7462297095052347165}
+        m_TargetAssemblyTypeName: WhoopiePieCannon, Assembly-CSharp
+        m_MethodName: Shooting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_ActionId: 66f96ec5-462a-48fc-96b4-7198b76694a6
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -178,9 +190,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 64
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1518367455123848738
 CapsuleCollider:
@@ -302,7 +314,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -319,6 +331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2721421397479779738}
+  - component: {fileID: 7462297095052347165}
   m_Layer: 0
   m_Name: PieREF
   m_TagString: Untagged
@@ -342,6 +355,26 @@ Transform:
   m_Father: {fileID: 5573399710366842186}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7462297095052347165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680092602904599294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2bee8b3b412c2c42b297034965cfb46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 483714381221802748}
+  projectilePrefab: {fileID: 9057117214881216367, guid: 370b849feaa8467428e125153f73f7f5,
+    type: 3}
+  shootPoint: {fileID: 2721421397479779738}
+  weaponMagSize: 10
+  throwCooldown: 1
+  throwForce: 1
+  throwUpForce: 1
 --- !u!1 &8686836029424047969
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,14 +11,14 @@ public class AI_Behaviour : MonoBehaviour
     public Ai_stats stats;
     public Rigidbody body;
     public Vector3 Location;
-    public float XEnd, steps, ZEnd;
+    public float XEnd, ZEnd;
+    float steps;
 
 
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>();
-        steps = stats.speed * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -27,7 +27,18 @@ public class AI_Behaviour : MonoBehaviour
         randomMove();
     }
 
-    void randomMove()
+    public void calculate_speed()
+    {
+        if (stats.health < 50)
+        {
+            steps = (stats.speed * stats.SprintMultiplier) * Time.deltaTime;
+        }
+        else
+        {
+            steps = stats.speed * Time.deltaTime;
+        }
+    }
+        void randomMove()
     {
         Location = transform.position;
         Vector3 pos = transform.position;

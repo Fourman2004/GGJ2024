@@ -16,7 +16,10 @@ public class WhoopiePieCannon : Weapons.WeaponController
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerController.instance.input.Player.Fire.WasPressedThisFrame() && Time.time > shootCooldown)
+        {
+            Shooting();
+        }
     }
 
     protected override void Reload()
@@ -26,6 +29,6 @@ public class WhoopiePieCannon : Weapons.WeaponController
 
     public override void Shooting()
     {
-        
+        base.Shooting();
     }
 }
