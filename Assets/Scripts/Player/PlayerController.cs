@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 150;
     public int currentHealth; // will change this to get / set function later
 
+    [Header("Power up amount")]
+    public int whippyCream = 0;
+
     private void Awake()
     {
         input = new InputMaster();

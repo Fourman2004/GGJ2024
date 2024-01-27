@@ -6,12 +6,18 @@ using UnityEngine;
 public class WhoopiePieCannon : Weapons.WeaponController
 {
 
-    private IEnumerator coroutine;
-
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+    }
+
+    protected override void SetProperties()
+    {
+        weaponMagSize = 3;
+        shootDelay = 0.7f;
+        throwForce = 25;
+        throwUpForce = 5;
     }
 
     // Update is called once per frame
@@ -24,9 +30,24 @@ public class WhoopiePieCannon : Weapons.WeaponController
 
         if (PlayerController.instance.input.Player.Reload.WasPressedThisFrame())
         {
-            coroutine = ReloadTimer(5.0f); ;
-            StartCoroutine(coroutine);
+            Reload();
         }
     }
+
+    protected override void Reload()
+    {
+        if(PlayerController.instance.whippyCream == 0) { return; }
+
+        if(PlayerController.instance.whippyCream <= 3)
+        {
+            ammoToChange = PlayerController.instance.whippyCream;
+            base.Reload();
+            PlayerController.instance.whippyCream -= ammoToChange;
+        }
+        
+
+    }
+
+
 
 }

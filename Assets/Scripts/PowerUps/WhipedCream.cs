@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class WhipedCream : PowerUps.PowerUps
 {
-
-
-
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        SetProperties();
+        base.Start();
     }
 
     // Update is called once per frame
@@ -20,7 +17,7 @@ public class WhipedCream : PowerUps.PowerUps
         if (Input.GetKeyDown("m"))
         {
             Debug.Log("Max Whoopie Pies Set");
-            currentAmount = maxAmount;
+            PlayerController.instance.whippyCream = maxAmount;
 
         }
 
@@ -29,14 +26,14 @@ public class WhipedCream : PowerUps.PowerUps
 
     protected override void SetProperties()
     {
-        maxAmount = 5;
+        maxAmount = 6;
         cooldownAmount = 5;
     }
 
     protected override void AddPowerUp()
     {
-        if (maxAmount == currentAmount) { return; };
-        currentAmount++;
+        if (maxAmount == PlayerController.instance.whippyCream) { return; };
+        PlayerController.instance.whippyCream++;
         base.AddPowerUp();
     }
 }

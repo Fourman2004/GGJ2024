@@ -10,13 +10,12 @@ namespace PowerUps
         public bool collisionOccured = false;
         private IEnumerator coroutine;
         protected int maxAmount;
-        protected int currentAmount;
         protected float cooldownAmount = 5.0f;
 
         // Start is called before the first frame update
-        void Start()
+        public virtual void Start()
         {
-            
+            SetProperties();
         }
 
         // Update is called once per frame
@@ -27,8 +26,10 @@ namespace PowerUps
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("Triggered");
             if(!collisionOccured)
             {
+                Debug.Log("collision if statement");
                 AddPowerUp();
             }
             
@@ -44,9 +45,9 @@ namespace PowerUps
             CoolDown();
         }
 
-        protected virtual void CoolDown()
+        protected void CoolDown()
         {
-            
+            // object mesh isn't visible till timer has finished
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
             coroutine = HideTimer(cooldownAmount);
             StartCoroutine(coroutine);
