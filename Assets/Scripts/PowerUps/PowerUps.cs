@@ -16,7 +16,7 @@ namespace PowerUps
         // Start is called before the first frame update
         void Start()
         {
-
+            
         }
 
         // Update is called once per frame
@@ -37,12 +37,10 @@ namespace PowerUps
 
         protected abstract void SetProperties();
 
-        private void AddPowerUp()
+        protected virtual void AddPowerUp()
         {
-            if(maxAmount == currentAmount) { return; };
             Debug.Log("Picked up");
             collisionOccured = true;
-            currentAmount++;
             CoolDown();
         }
 

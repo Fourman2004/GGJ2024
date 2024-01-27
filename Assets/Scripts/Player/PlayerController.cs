@@ -13,9 +13,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     public float speed = 1f;
     private Vector3 direction;
+    public int maxHealth = 150;
+    public int currentHealth; // will change this to get / set function later
+
     private void Awake()
     {
         input = new InputMaster();
+        maxHealth = currentHealth;
     }
 
     private void OnEnable()
@@ -50,4 +54,6 @@ public class PlayerController : MonoBehaviour
         direction.z = direction.y;
         direction.y = 0;
     }
+
+
 }
