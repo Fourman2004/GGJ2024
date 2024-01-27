@@ -11,6 +11,7 @@ public class Ai_stats : MonoBehaviour
     private NPCAnimation NPC;
     [SerializeField]
     private AI_Behaviour Behaviour;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,6 @@ public class Ai_stats : MonoBehaviour
             case < 50:
                 NPC.isWalking = true;
                 NPC.isRunning = true;
-                Behaviour.calculate_speed();
                 break;
         }
     }
