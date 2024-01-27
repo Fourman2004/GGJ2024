@@ -31,15 +31,7 @@ namespace Weapons
 
         }
 
-        protected virtual void Reload()
-        {
-            weaponAmmo = weaponMagSize;
-            // want a timer here
-
-            canShootProjectile = true;
-        }
-
-        public virtual void Shooting()
+        protected virtual void Shooting()
         {
             if (weaponAmmo == 0) { return; }
 
@@ -56,6 +48,25 @@ namespace Weapons
             // decreases current ammo
             weaponAmmo--;
             shootCooldown = Time.time + shootDelay;
+        }
+
+        protected virtual void Reload()
+        {
+            Debug.Log("Reload occured");
+            weaponAmmo = weaponMagSize;
+            // want a timer here
+        }
+
+        protected IEnumerator ReloadTimer(float time)
+        {
+            Debug.Log("Reloading");
+            yield return new WaitForSeconds(time);
+            Reload();
+        }
+
+        protected virtual void Melee()
+        {
+
         }
     }
 }
