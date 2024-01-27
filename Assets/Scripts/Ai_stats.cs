@@ -15,6 +15,12 @@ public class Ai_stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (health)
+        {
+            case >= 75:
+                break;
+            case <= 0:
+                break;
+        }
     }
 }
