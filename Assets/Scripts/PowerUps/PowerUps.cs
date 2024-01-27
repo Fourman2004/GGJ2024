@@ -26,10 +26,8 @@ namespace PowerUps
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Triggered");
             if(!collisionOccured)
             {
-                Debug.Log("collision if statement");
                 AddPowerUp();
             }
             
@@ -40,7 +38,6 @@ namespace PowerUps
 
         protected virtual void AddPowerUp()
         {
-            Debug.Log("Picked up");
             collisionOccured = true;
             CoolDown();
         }
