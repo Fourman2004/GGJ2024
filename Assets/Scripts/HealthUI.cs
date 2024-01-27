@@ -16,7 +16,7 @@ public class HealthUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //healthImage.fillAmount = (float) PlayerController.instance.currentHealth / PlayerController.instance.maxHealth;
-        //healthImage.fillAmount = Mathf.Clamp(healthImage.fillAmount, 0f, 1f);
+        healthImage.fillAmount = (float)PlayerController.instance.currentHealth / PlayerController.instance.maxHealth;
+        healthImage.fillAmount = Mathf.Clamp(healthImage.fillAmount, 0f, 1f);
     }
 }
