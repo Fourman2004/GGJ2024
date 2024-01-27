@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public static Rigidbody rigidbody;
+    public Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
     {

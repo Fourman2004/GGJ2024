@@ -9,11 +9,11 @@ namespace Weapons
         public GameObject owner;
 
         [Header("Shooting based weapons")]
-        protected Projectile projectilePrefab;
-        protected GameObject spawnedProjectile;
-        protected Transform shootPoint;
+        public Projectile projectilePrefab;
+        //protected GameObject spawnedProjectile;
+        public Transform shootPoint;
         protected int weaponAmmo;
-        protected int weaponMagSize;
+        public int weaponMagSize;
         protected bool canShootProjectile = true;
         public float throwCooldown;
         public float throwForce;
@@ -42,7 +42,7 @@ namespace Weapons
         public virtual void Shooting()
         {
             // instantiate projectile
-            spawnedProjectile = Instantiate(projectilePrefab.gameObject, shootPoint);
+            GameObject spawnedProjectile = Instantiate(projectilePrefab.gameObject, shootPoint.position, shootPoint.rotation);
 
             // reference the projectile's rigidbody (get component ewww)
             Rigidbody projectileRB = spawnedProjectile.GetComponent<Rigidbody>();
@@ -52,8 +52,6 @@ namespace Weapons
             projectileRB.AddForce(projectileForce, ForceMode.Impulse);
             // decreases current ammo
             weaponAmmo--;
-
-
         }
     }
 }
