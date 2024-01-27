@@ -30,7 +30,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (instance == null) instance = this;
+        else
+        {
+            Destroy(this);
+            return;
+        }
+        DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame
