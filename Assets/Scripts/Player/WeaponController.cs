@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,12 +12,13 @@ namespace Weapons
         [Header("Shooting based weapons")]
         public Projectile projectilePrefab;
         public Transform shootPoint;
-        protected int weaponAmmo;
-        protected int weaponMagSize;
+        public int weaponAmmo;
+        public int weaponMagSize;
         protected float shootDelay;
         protected float shootCooldown;
         protected float throwForce;
         protected float throwUpForce;
+        public float reloadTime = 5.0f;
 
         private IEnumerator coroutine;
         protected int ammoToChange;
@@ -61,7 +63,7 @@ namespace Weapons
             if(gunReloading) { return; }
 
             Debug.Log("Reload occured");
-            coroutine = ReloadTimer(5.0f); ;
+            coroutine = ReloadTimer(reloadTime);
             StartCoroutine(coroutine);
             gunReloading = false;
             

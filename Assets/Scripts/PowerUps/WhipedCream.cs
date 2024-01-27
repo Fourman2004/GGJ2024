@@ -17,7 +17,7 @@ public class WhipedCream : PowerUps.PowerUps
         if (Input.GetKeyDown("m"))
         {
             Debug.Log("Max Whoopie Pies Set");
-            PlayerController.instance.whippyCream = maxAmount;
+            Player.instance.whippyCream = maxAmount;
 
         }
 
@@ -32,9 +32,9 @@ public class WhipedCream : PowerUps.PowerUps
 
     protected override void AddPowerUp()
     {
-        if (maxAmount == PlayerController.instance.whippyCream) { return; };
+        if (maxAmount == Player.instance.whippyCream) { return; };
         Debug.Log("Picked up whippy cream");
-        PlayerController.instance.whippyCream++;
+        Player.instance.whippyCream++;
         base.AddPowerUp();
     }
 }

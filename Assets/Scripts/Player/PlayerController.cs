@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
     public float speed = 1f;
     private Vector3 direction;
 
-    [Header("Power up amount")]
-    public int whippyCream = 0;
 
     private void Awake()
     {
