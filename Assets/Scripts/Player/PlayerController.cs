@@ -13,14 +13,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     public float speed = 1f;
     private Vector3 direction;
-
-    public int maxThrows;
-    private int currentThrows;
-    public float throwCooldown;
-    public float throwForce;
-    public float throwUpForce;
-
-    bool canThrow = true;
     private void Awake()
     {
         input = new InputMaster();
@@ -29,7 +21,6 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
-        currentThrows = maxThrows;
     }
 
     private void OnDisable()
@@ -46,19 +37,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         transform.Translate(direction * (speed * Time.deltaTime));
-        if (input.Player.Throw.IsPressed() && canThrow == true && currentThrows > 0)
-        {
-
-        }
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
         direction.z = direction.y;
         direction.y = 0;
-    }
-    public void Throw()
-    {
-        canThrow = false;
     }
 }

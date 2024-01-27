@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class WhoopiePieCannon : Weapons.WeaponController
+public class Projectile : MonoBehaviour
 {
-     
-
+    public static Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,16 +13,6 @@ public class WhoopiePieCannon : Weapons.WeaponController
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
-
-    protected override void Reload()
-    {
-
-    }
-
-    public override void Shooting()
     {
         
     }
