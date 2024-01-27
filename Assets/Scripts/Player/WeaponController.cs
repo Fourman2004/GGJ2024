@@ -20,15 +20,18 @@ namespace Weapons
         public float throwUpForce;
 
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             weaponAmmo = weaponMagSize;
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
-
+            if (weaponAmmo <= 0)
+            {
+                canShootProjectile = false;
+            }
         }
 
         protected virtual void Reload()
