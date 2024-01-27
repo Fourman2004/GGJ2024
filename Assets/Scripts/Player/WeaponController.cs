@@ -12,16 +12,20 @@ namespace Weapons
         public Projectile projectilePrefab;
         public Transform shootPoint;
         protected int weaponAmmo;
-        public int weaponMagSize;
-        protected bool canShootProjectile = true;
-        public float shootDelay;
+        protected int weaponMagSize;
+        protected float shootDelay;
         protected float shootCooldown;
-        public float throwForce;
-        public float throwUpForce;
+        protected float throwForce;
+        protected float throwUpForce;
+
+        private IEnumerator coroutine;
+        protected int ammoToChange;
+        private bool gunReloading = false;
 
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            SetProperties();
             weaponAmmo = weaponMagSize;
         }
 
@@ -30,6 +34,8 @@ namespace Weapons
         {
 
         }
+
+        protected abstract void SetProperties();
 
         protected virtual void Shooting()
         {
@@ -52,16 +58,25 @@ namespace Weapons
 
         protected virtual void Reload()
         {
+            if(gunReloading) { return; }
+
             Debug.Log("Reload occured");
-            weaponAmmo = weaponMagSize;
-            // want a timer here
+            coroutine = ReloadTimer(5.0f); ;
+            StartCoroutine(coroutine);
+            gunReloading = false;
+            
+
         }
 
         protected IEnumerator ReloadTimer(float time)
         {
             Debug.Log("Reloading");
+            // so reload can't occur multiple times in one instance
+            gunReloading = true;
             yield return new WaitForSeconds(time);
-            Reload();
+            // allows reload to be either a partial or full mag
+            weaponAmmo = ammoToChange;
+            
         }
 
         protected virtual void Melee()

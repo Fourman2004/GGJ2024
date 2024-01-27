@@ -5,9 +5,9 @@ using UnityEngine;
 public class NewBehaviourScript : PowerUps.PowerUps
 {
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        SetProperties();
+        base.Start();
     }
 
 
@@ -31,17 +31,13 @@ public class NewBehaviourScript : PowerUps.PowerUps
         // the full use of power up isn't applied since the hp of player will go over max hp
         if ((PlayerController.instance.maxHealth - PlayerController.instance.currentHealth) < 30) 
         {
-            //Debug.Log("Power not fully used");
             PlayerController.instance.currentHealth = PlayerController.instance.maxHealth;
-            //Debug.Log(PlayerController.instance.currentHealth);
             base.AddPowerUp();
             return;
         };
 
         // power up is fully used
-        //Debug.Log("Power used");
         PlayerController.instance.currentHealth += maxAmount;
-        //Debug.Log(PlayerController.instance.currentHealth);
         base.AddPowerUp();
     }
 }
