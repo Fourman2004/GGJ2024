@@ -16,11 +16,19 @@ public class WhoopiePieCannon : Weapons.WeaponController
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerController.instance.input.Player.Fire.WasPressedThisFrame())
+        {
+            Shooting();
+        }
     }
 
     protected override void Reload()
     {
 
+    }
+
+    public override void Shooting()
+    {
+        base.Shooting();
     }
 }
