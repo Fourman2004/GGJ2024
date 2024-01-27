@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public PlayerController playerController;
     public Health health;
 
+    [Header("Power up amount")]
+    public int whippyCream = 0;
+
     private void Awake()
     {
         instance = this;

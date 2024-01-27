@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class WhoopiePieCannon : Weapons.WeaponController
 {
-
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -32,17 +31,20 @@ public class WhoopiePieCannon : Weapons.WeaponController
         {
             Reload();
         }
+
+
     }
 
     protected override void Reload()
     {
-        if(PlayerController.instance.whippyCream == 0) { return; }
+        if(Player.instance.whippyCream == 0) { return; }
 
-        if(PlayerController.instance.whippyCream <= 3)
+        if(Player.instance.whippyCream <= 3)
         {
-            ammoToChange = PlayerController.instance.whippyCream;
+            ammoToChange = Player.instance.whippyCream;
             base.Reload();
-            PlayerController.instance.whippyCream -= ammoToChange;
+            Player.instance.whippyCream -= ammoToChange;
+            StartCoroutine(ReloadBar.instance.ShowReload(reloadTime));
         }
         
 
