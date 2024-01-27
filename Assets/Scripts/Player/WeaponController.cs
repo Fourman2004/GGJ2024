@@ -10,12 +10,12 @@ namespace Weapons
 
         [Header("Shooting based weapons")]
         public Projectile projectilePrefab;
-        //protected GameObject spawnedProjectile;
         public Transform shootPoint;
         protected int weaponAmmo;
         public int weaponMagSize;
         protected bool canShootProjectile = true;
-        public float throwCooldown;
+        public float shootDelay;
+        protected float shootCooldown;
         public float throwForce;
         public float throwUpForce;
 
@@ -41,17 +41,22 @@ namespace Weapons
 
         public virtual void Shooting()
         {
-            // instantiate projectile
-            GameObject spawnedProjectile = Instantiate(projectilePrefab.gameObject, shootPoint.position, shootPoint.rotation);
+            if (canShootProjectile)
+            {
+                // instantiate projectile
+                GameObject spawnedProjectile = Instantiate(projectilePrefab.gameObject, shootPoint.position, shootPoint.rotation);
 
-            // reference the projectile's rigidbody (get component ewww)
-            Rigidbody projectileRB = spawnedProjectile.GetComponent<Rigidbody>();
+                // reference the projectile's rigidbody (get component ewww)
+                Rigidbody projectileRB = spawnedProjectile.GetComponent<Rigidbody>();
 
-            // add force
-            Vector3 projectileForce = owner.transform.forward * throwForce + transform.up * throwUpForce;
-            projectileRB.AddForce(projectileForce, ForceMode.Impulse);
-            // decreases current ammo
-            weaponAmmo--;
+                // add force
+                Vector3 projectileForce = owner.transform.forward * throwForce + transform.up * throwUpForce;
+                projectileRB.AddForce(projectileForce, ForceMode.Impulse);
+
+                // decreases current ammo
+                weaponAmmo--;
+                shootCooldown = Time.time + shootDelay;
+            }
         }
     }
 }

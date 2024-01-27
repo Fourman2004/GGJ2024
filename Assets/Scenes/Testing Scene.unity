@@ -396,6 +396,26 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7462297095052347165, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: shootDelay
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462297095052347165, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: throwForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462297095052347165, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: throwUpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462297095052347165, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: shootCooldown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
