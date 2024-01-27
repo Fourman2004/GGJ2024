@@ -9,6 +9,9 @@ namespace PowerUps
     {
         public bool collisionOccured = false;
         private IEnumerator coroutine;
+        protected int maxAmount;
+        protected int currentAmount;
+        protected float cooldownAmount = 5.0f;
 
         // Start is called before the first frame update
         void Start()
@@ -22,24 +25,32 @@ namespace PowerUps
 
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
             if(!collisionOccured)
             {
-                Debug.Log("Picked up");
-                collisionOccured = true;
-                CoolDown();
+                AddPowerUp();
             }
             
         }
 
 
-        protected abstract void AddPowerUps();
+        protected abstract void SetProperties();
 
-        private void CoolDown()
+        private void AddPowerUp()
         {
+            if(maxAmount == currentAmount) { return; };
+            Debug.Log("Picked up");
+            collisionOccured = true;
+            currentAmount++;
+            CoolDown();
+        }
+
+        protected virtual void CoolDown()
+        {
+            
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            coroutine = HideTimer(5.0f);
+            coroutine = HideTimer(cooldownAmount);
             StartCoroutine(coroutine);
         }
 
