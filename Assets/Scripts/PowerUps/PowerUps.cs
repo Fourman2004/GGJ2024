@@ -26,7 +26,7 @@ namespace PowerUps
 
         private void OnTriggerEnter(Collider other)
         {
-            if(!collisionOccured)
+            if(!collisionOccured && other.tag == "Player")
             {
                 AddPowerUp();
             }

@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     public float speed = 1f;
     private Vector3 direction;
-    public int maxHealth = 150;
-    public int currentHealth = 150; // will change this to get / set function later
 
     [Header("Power up amount")]
     public int whippyCream = 0;
@@ -43,8 +41,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(this);
-
-        maxHealth = currentHealth;
     }
 
     // Update is called once per frame
@@ -58,6 +54,4 @@ public class PlayerController : MonoBehaviour
         direction.z = direction.y;
         direction.y = 0;
     }
-
-
 }
