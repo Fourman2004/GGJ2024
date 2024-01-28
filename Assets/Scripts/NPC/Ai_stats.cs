@@ -25,7 +25,7 @@ public class Ai_stats : MonoBehaviour
         switch (health)
         {
             case 0:
-
+                GameManager.instance.killCount++;
                 Destroy(NPC_The_Guy);
                 break;
             case >= 75:
