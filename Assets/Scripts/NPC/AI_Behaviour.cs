@@ -193,6 +193,6 @@ public class AI_Behaviour : MonoBehaviour
 
     private void OnDestroy()
     {
-        AudioSource.PlayClipAtPoint(Death[Random.Range(1,4)], transform.position);
+       // AudioSource.PlayClipAtPoint(Death[Random.Range(1,4)], transform.position);
     }
 }
