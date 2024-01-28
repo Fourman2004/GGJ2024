@@ -37,7 +37,6 @@ public class ReloadBar : MonoBehaviour
         completedReload = false;
         while (completedReload == false && barImage.fillAmount < 1.0f)
         {
-            Debug.Log("help");
             gameObject.SetActive(true);
             barImage.fillAmount += 0.01f;
             yield return new WaitForSeconds(seconds / 100f);
