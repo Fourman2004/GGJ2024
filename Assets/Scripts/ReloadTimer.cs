@@ -9,6 +9,8 @@ public class ReloadBar : MonoBehaviour
 
     public Image barImage;
 
+    public bool completedReload;
+
     private void Awake()
     {
         instance = this;
@@ -16,19 +18,30 @@ public class ReloadBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        barImage.fillAmount = 0f;
+        barImage.fillAmount = 0.0f;
         gameObject.SetActive(false);
+        completedReload = true;
     }
 
+    private void Update()
+    {
+        if (barImage.fillAmount >= 1.0f && completedReload == true)
+        {
+            //StopAllCoroutines();
+            barImage.fillAmount = 0.0f;
+            gameObject.SetActive(false);
+        }
+    }
     public IEnumerator ShowReload(float seconds)
     {
-        gameObject.SetActive(true);
-        if (barImage.fillAmount < 1.0f)
+        completedReload = false;
+        while (completedReload == false && barImage.fillAmount < 1.0f)
         {
+            Debug.Log("help");
+            gameObject.SetActive(true);
             barImage.fillAmount += 0.01f;
-            Debug.Log(barImage.fillAmount);
+            yield return new WaitForSeconds(seconds / 100f);
         }
-        yield return new WaitForSeconds(seconds);
-        gameObject.SetActive(false);
+        completedReload = true;
     }
 }
