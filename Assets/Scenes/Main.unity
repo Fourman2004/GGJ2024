@@ -2584,6 +2584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  killCount: 0
   spawnDelay: 5
   spawnPoints:
   - {fileID: 338295374}
@@ -2596,11 +2597,11 @@ MonoBehaviour:
   - {fileID: 1272731137}
   - {fileID: 1247999469}
   - {fileID: 1176384582}
-  bossSpawnPoint: {fileID: 0}
+  bossSpawnPoint: {fileID: 2113692709}
   enemies:
   - {fileID: 2847194442442900215, guid: a1a96a4473a61aa419018fc7f0f590c3, type: 3}
   - {fileID: 2847194442442900215, guid: dcb3f05487a21bc44b57c9b3131fb47a, type: 3}
-  boss: {fileID: 0}
+  boss: {fileID: 2847194442442900215, guid: 73bad4ae8fe688649ab218f86a06d193, type: 3}
 --- !u!4 &1637961042
 Transform:
   m_ObjectHideFlags: 0
@@ -3102,7 +3103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113692708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 280, y: 0.29, z: 145.4}
+  m_LocalPosition: {x: 283.93, y: 0.29, z: 147.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3297,7 +3298,7 @@ PrefabInstance:
     - target: {fileID: 3898774626359328443, guid: b46336b641fcc8e4b852021319a73edf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3898774626359328443, guid: b46336b641fcc8e4b852021319a73edf,
         type: 3}
