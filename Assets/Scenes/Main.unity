@@ -2698,7 +2698,7 @@ MonoBehaviour:
   bossSpawnPoint: {fileID: 2113692709}
   enemies:
   - {fileID: 2847194442442900215, guid: a1a96a4473a61aa419018fc7f0f590c3, type: 3}
-  - {fileID: 2847194442442900215, guid: dcb3f05487a21bc44b57c9b3131fb47a, type: 3}
+  - {fileID: 2847194442442900215, guid: 45baf2e09323a154ea8f69afb0570b1d, type: 3}
   boss: {fileID: 2847194442442900215, guid: 73bad4ae8fe688649ab218f86a06d193, type: 3}
 --- !u!4 &1637961042
 Transform:
@@ -3323,7 +3323,7 @@ PrefabInstance:
     - target: {fileID: 3936309200461443069, guid: 620945df00df46c4493d41e40926e6a1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3936309200461443069, guid: 620945df00df46c4493d41e40926e6a1,
         type: 3}
