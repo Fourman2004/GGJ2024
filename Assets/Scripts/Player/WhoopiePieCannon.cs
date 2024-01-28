@@ -41,8 +41,6 @@ public class WhoopiePieCannon : Weapons.WeaponController
         {
             Reload();
         }
-
-
     }
 
     protected override void Reload()
@@ -54,12 +52,8 @@ public class WhoopiePieCannon : Weapons.WeaponController
             ammoToChange = Player.instance.whippyCream;
             base.Reload();
             Player.instance.whippyCream -= ammoToChange;
+            ReloadBar.instance.completedReload = false;
             StartCoroutine(ReloadBar.instance.ShowReload(reloadTime));
         }
-        
-
     }
-
-
-
 }

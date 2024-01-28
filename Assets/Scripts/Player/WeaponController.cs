@@ -66,9 +66,6 @@ namespace Weapons
             Debug.Log("Reload occured");
             coroutine = ReloadTimer(reloadTime);
             StartCoroutine(coroutine);
-            gunReloading = false;
-            
-
         }
 
         protected IEnumerator ReloadTimer(float time)
@@ -79,7 +76,7 @@ namespace Weapons
             yield return new WaitForSeconds(time);
             // allows reload to be either a partial or full mag
             weaponAmmo = ammoToChange;
-            
+            gunReloading = false;
         }
 
         protected virtual void Melee()
