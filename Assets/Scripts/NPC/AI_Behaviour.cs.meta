@@ -3,7 +3,15 @@ guid: 3936c1f86c7d26348a884a972d5b6452
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - stats: {instanceID: 0}
+  - body: {instanceID: 0}
+  - Projectile: {instanceID: 0}
+  - projectSpawnObj: {instanceID: 0}
+  - Hurtbox: {instanceID: 0}
+  - actorToHarm: {instanceID: 0}
+  - playerHealth: {instanceID: 0}
+  - Shoot: {fileID: 8300000, guid: f28381ca548522b4989065772d9692e9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

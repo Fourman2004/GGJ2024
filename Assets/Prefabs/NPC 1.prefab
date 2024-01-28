@@ -205,10 +205,10 @@ MonoBehaviour:
   body: {fileID: 8293721924226975019}
   XEnd: 1000
   ZEnd: 1000
-  minPlayerDist: 0
-  maxPlayerDist: 0
-  hostile: 0
-  melee: 0
+  minPlayerDist: 10
+  maxPlayerDist: 20
+  hostile: 1
+  melee: 1
   Projectile: {fileID: 2004000248194216528, guid: 370b849feaa8467428e125153f73f7f5,
     type: 3}
   projectSpawnObj: {fileID: 1483171773038713327}
@@ -219,6 +219,8 @@ MonoBehaviour:
   actorToHarm: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
     type: 3}
   playerHealth: {fileID: 0}
+  Shoot: {fileID: 0}
+  Death: []
 --- !u!114 &2600843433914518
 MonoBehaviour:
   m_ObjectHideFlags: 0
