@@ -45,16 +45,33 @@ public class WhoopiePieCannon : Weapons.WeaponController
 
     protected override void Reload()
     {
-        if(Player.instance.whippyCream == 0) { return; }
+        if(weaponAmmo == weaponMagSize) { return; } // mag is already full
+        if(Player.instance.whippyCream == 0) { return; } // no power up to reload with
 
-        // supposed to reload 3 at a time?
-        if(Player.instance.whippyCream <= 3)
+        int maxAmmoToAdd = weaponMagSize - weaponAmmo;
+
+        if(Player.instance.whippyCream < maxAmmoToAdd) // adds a partial mag
         {
-            ammoToChange = Player.instance.whippyCream;
+            ammoToAdd = Player.instance.whippyCream;
             base.Reload();
-            Player.instance.whippyCream -= ammoToChange;
+            Player.instance.whippyCream -= ammoToAdd;
             ReloadBar.instance.completedReload = false;
             StartCoroutine(ReloadBar.instance.ShowReload(reloadTime));
+            
         }
+
+        else 
+        {
+            ammoToAdd = maxAmmoToAdd;
+            base.Reload();
+            Player.instance.whippyCream -= ammoToAdd;
+            ReloadBar.instance.completedReload = false;
+        }
+
+       
+
+        ReloadBar.instance.completedReload = false;
+        StartCoroutine(ReloadBar.instance.ShowReload(reloadTime));
+
     }
 }

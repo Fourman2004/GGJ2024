@@ -25,8 +25,8 @@ public class NPCAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsWalking(isWalking);
-        IsRunning(isRunning);
+        //IsWalking(isWalking);
+        //IsRunning(isRunning);
     }
 
     void GetHashes()
@@ -43,6 +43,7 @@ public class NPCAnimation : MonoBehaviour
     {
         animator.SetTrigger(isKnockedHash);
     }
+
 
     void IsWalking(bool currentState)
     {

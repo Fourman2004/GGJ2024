@@ -21,7 +21,7 @@ namespace Weapons
         public float reloadTime = 5.0f;
 
         private IEnumerator coroutine;
-        protected int ammoToChange;
+        protected int ammoToAdd;
         private bool gunReloading = false;
         public int weaponDamage;
 
@@ -74,8 +74,9 @@ namespace Weapons
             // so reload can't occur multiple times in one instance
             gunReloading = true;
             yield return new WaitForSeconds(time);
+
             // allows reload to be either a partial or full mag
-            weaponAmmo = ammoToChange;
+            weaponAmmo += ammoToAdd;
             gunReloading = false;
         }
 

@@ -38,4 +38,9 @@ public class Ai_stats : MonoBehaviour
                 break;
         }
     }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.ChangeScore(100);
+    }
 }
