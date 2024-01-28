@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1483171773038713327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4203605573550287755}
+  m_Layer: 0
+  m_Name: ProjectSpawnOBJ
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4203605573550287755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483171773038713327}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.041015625, y: 1.252, z: 0.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3226992883990452301}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3117104002555953062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26,7 +57,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 109.47326
+      value: 109.364
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
         type: 3}
@@ -70,7 +101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4203605573550287755}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dd3d7460bf627d047816bf841d3636ba,
         type: 3}
@@ -161,15 +196,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 2600843433914518}
   body: {fileID: 8293721924226975019}
-  Projectile: {fileID: 919132149155446097, guid: b366804acddd4234fa4ae614b14c6f70,
-    type: 3}
-  actorToHarm: {fileID: 483714381221802748, guid: 4b89d7650b9291b49815e14b2e5c5326,
-    type: 3}
-  Meleehurtbox: {fileID: 730213488536373594}
-  Location: {x: 0, y: 0, z: 0}
+  health: {fileID: 0}
   XEnd: 1000
   ZEnd: 1000
-  steps: 0
+  minPlayerDist: 0
+  maxPlayerDist: 0
+  hostile: 0
+  melee: 0
+  Projectile: {fileID: 919132149155446097, guid: b366804acddd4234fa4ae614b14c6f70,
+    type: 3}
+  Hurtbox: {fileID: 730213488536373594}
+  clownProjectForcefulness: 10
+  actorToHarm: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
+    type: 3}
+  projectSpawnObj: {fileID: 4203605573550287755}
 --- !u!114 &2600843433914518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,8 +224,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.01
   health: 100
-  damage: 0
   SprintMultiplier: 2
+  meleeDamage: 0
+  rangeDamage: 0
   NPC_The_Guy: {fileID: 2847194442442900215}
   NPC: {fileID: 1465931907839097771}
   Behaviour: {fileID: 7664608066525452545}
@@ -214,7 +255,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1465931907839097771
 MonoBehaviour:
@@ -230,3 +271,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWalking: 0
   isRunning: 0
+--- !u!4 &3226992883990452301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 3117104002555953062}
+  m_PrefabAsset: {fileID: 0}

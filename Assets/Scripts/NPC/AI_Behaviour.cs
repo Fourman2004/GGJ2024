@@ -7,19 +7,25 @@ using UnityEditorInternal;
 using UnityEditor;
 using static UnityEditor.PlayerSettings;
 using UnityEngine.UIElements;
+using System.Buffers;
 
 public class AI_Behaviour : MonoBehaviour
 {
     public Ai_stats stats;
     public Rigidbody body;
-    public GameObject Projectile;
-    public Collider Hurtbox;
-    public Transform actorToHarm;
     Vector3 pos;
     public Health health;
+
+    [Header("Ai Movement ranges")]
     public float XEnd, ZEnd, minPlayerDist, maxPlayerDist;
     float steps;
+
+    [Header("AI hostility")]
     public bool hostile, melee;
+    public GameObject Projectile;
+    public Collider Hurtbox;
+    public float clownProjectForcefulness, clownProjectileUp;
+    public Transform actorToHarm, projectSpawnObj;
 
 
     // Start is called before the first frame update
@@ -50,7 +56,7 @@ public class AI_Behaviour : MonoBehaviour
                     else
                     {
                         randomMove();
-                        LaunchProjectile();
+                        if (Vector3.Distance(transform.position, pos) <= maxPlayerDist) { LaunchProjectile(); }
                     }
                     break;
 
@@ -89,9 +95,12 @@ public class AI_Behaviour : MonoBehaviour
 
     private void LaunchProjectile()
     {
-        /*GameObject Clownjectile = Instantiate(Projectile, transform.position, Quaternion.identity);
-        Clownjectile.AddComponent<>();*/
-
+        
+            transform.LookAt(actorToHarm.position);
+            GameObject Clownjectile = Instantiate(Projectile, projectSpawnObj.position, Quaternion.identity);
+            Rigidbody clownBody = Clownjectile.GetComponent<Rigidbody>();
+            Vector3 clownForce = (projectSpawnObj.forward * clownProjectForcefulness) + (transform.up * clownProjectileUp);
+            clownBody.AddForce(clownForce, ForceMode.Impulse);
     }
 
     void MoveTowardsPlayer()
