@@ -10,6 +10,7 @@ public class HUD : MonoBehaviour
     public TextMeshProUGUI magsizeText;
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI whippycreamText;
+    public TextMeshProUGUI scoreText;
 
     public WeaponController weaponREF;
 
@@ -18,5 +19,6 @@ public class HUD : MonoBehaviour
         magsizeText.text = "Mag Size: " + weaponREF.weaponMagSize.ToString();
         ammoText.text = "Ammo: " + weaponREF.weaponAmmo.ToString();
         whippycreamText.text = "Whippy Cream: " + Player.instance.whippyCream.ToString();
+        scoreText.text = "Score: " + GameManager.instance.score.ToString();
     }
 }
