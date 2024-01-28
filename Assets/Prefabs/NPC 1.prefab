@@ -220,7 +220,11 @@ MonoBehaviour:
     type: 3}
   playerHealth: {fileID: 0}
   Shoot: {fileID: 0}
-  Death: []
+  Death:
+  - {fileID: 8300000, guid: 5a5a34ed7537d7f40910813d97b697d2, type: 3}
+  - {fileID: 8300000, guid: 7fba03fa3a933cf48a1a13e2ee6b0151, type: 3}
+  - {fileID: 8300000, guid: 2174166eb34366348a8e2e916ffa4cc9, type: 3}
+  - {fileID: 8300000, guid: 06e3a23c6446bce4d884f95f16aa202c, type: 3}
 --- !u!114 &2600843433914518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,8 +240,8 @@ MonoBehaviour:
   speed: 0.01
   health: 100
   SprintMultiplier: 2
-  meleeDamage: 0
-  rangeDamage: 0
+  meleeDamage: 10
+  rangeDamage: 10
   NPC_The_Guy: {fileID: 2847194442442900215}
   NPC: {fileID: 1465931907839097771}
   Behaviour: {fileID: 7664608066525452545}

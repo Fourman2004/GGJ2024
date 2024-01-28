@@ -51,6 +51,16 @@ public class AI_Behaviour : MonoBehaviour
         body = GetComponent<Rigidbody>();
         Hurtbox = GetComponent<Collider>();
         pos = transform.position;
+        int range = Random.Range(0,1);
+        switch (range) {
+            case 0:
+            melee = true; 
+            break;
+            case 1:
+            melee= false;
+                break;
+        }
+
     }
 
     // Update is called once per frame

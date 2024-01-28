@@ -42,7 +42,6 @@ public class Menu : MonoBehaviour
         QuitButton.gameObject.SetActive(false);
         BackButton.gameObject.SetActive(true);
         Controls.gameObject.SetActive(false);
-        Debug.Log("Clicked");
     }
     public void back()
     {
