@@ -133,9 +133,9 @@ public class AI_Behaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Collision detected");
+        //Debug.Log("Collision detected");
         if (!other.gameObject.CompareTag("Projectile")) { return; }
-        Debug.Log("Projectile detected");
+        //Debug.Log("Projectile detected");
         if(!gameObject.GetComponent<Ai_stats>()) { return; }
 
         gameObject.GetComponent<Ai_stats>().health -= WhoopiePieCannon.instance.weaponDamage;
