@@ -15,6 +15,7 @@ public class AI_Behaviour : MonoBehaviour
     public Rigidbody body;
     Vector3 pos;
     public Health health;
+    int cooldown;
 
     [Header("Ai Movement ranges")]
     public float XEnd, ZEnd, minPlayerDist, maxPlayerDist;
@@ -22,10 +23,10 @@ public class AI_Behaviour : MonoBehaviour
 
     [Header("AI hostility")]
     public bool hostile, melee;
-    public GameObject Projectile;
+    public GameObject Projectile, projectSpawnObj;
     public Collider Hurtbox;
-    public float clownProjectForcefulness, clownProjectileUp;
-    public Transform actorToHarm, projectSpawnObj;
+    public float clownProjectForcefulness, clownProjectileUp, timeFrame;
+    public Transform actorToHarm;
 
 
     // Start is called before the first frame update
@@ -55,8 +56,9 @@ public class AI_Behaviour : MonoBehaviour
                     }
                     else
                     {
-                        randomMove();
-                        if (Vector3.Distance(transform.position, pos) <= maxPlayerDist) { LaunchProjectile(); }
+                            randomMove();
+                        
+
                     }
                     break;
 
@@ -81,6 +83,9 @@ public class AI_Behaviour : MonoBehaviour
 
         if (Vector3.Distance(transform.position, pos) <= maxPlayerDist)
         {
+            if(!melee && hostile)
+            { LaunchProjectile();  }
+
             pos.x = Random.Range(-XEnd, XEnd);
             pos.z = Random.Range(-ZEnd, ZEnd);
             transform.LookAt(pos);
@@ -95,14 +100,24 @@ public class AI_Behaviour : MonoBehaviour
 
     private void LaunchProjectile()
     {
-        
+        if (cooldown != timeFrame)
+        {
+            cooldown++;
+            Debug.Log(cooldown);
+        }
+        else
+        {
             transform.LookAt(actorToHarm.position);
-            GameObject Clownjectile = Instantiate(Projectile, projectSpawnObj.position, Quaternion.identity);
+            GameObject Clownjectile = Instantiate(Projectile, projectSpawnObj.transform.position, projectSpawnObj.transform.rotation);
             Rigidbody clownBody = Clownjectile.GetComponent<Rigidbody>();
-            Vector3 clownForce = (projectSpawnObj.forward * clownProjectForcefulness) + (transform.up * clownProjectileUp);
+            Debug.Log(clownBody);
+            Vector3 clownForce = (projectSpawnObj.transform.forward * clownProjectForcefulness) + (transform.up * clownProjectileUp);
             clownBody.AddForce(clownForce, ForceMode.Impulse);
+            cooldown = 0;
+        }
     }
 
+ 
     void MoveTowardsPlayer()
     {
         transform.LookAt(actorToHarm);

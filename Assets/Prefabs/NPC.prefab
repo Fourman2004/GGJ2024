@@ -203,13 +203,15 @@ MonoBehaviour:
   maxPlayerDist: 0
   hostile: 0
   melee: 0
-  Projectile: {fileID: 919132149155446097, guid: b366804acddd4234fa4ae614b14c6f70,
+  Projectile: {fileID: 2004000248194216528, guid: 370b849feaa8467428e125153f73f7f5,
     type: 3}
+  projectSpawnObj: {fileID: 1483171773038713327}
   Hurtbox: {fileID: 730213488536373594}
   clownProjectForcefulness: 10
+  clownProjectileUp: 10
+  timeFrame: 3
   actorToHarm: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
     type: 3}
-  projectSpawnObj: {fileID: 4203605573550287755}
 --- !u!114 &2600843433914518
 MonoBehaviour:
   m_ObjectHideFlags: 0

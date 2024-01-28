@@ -233,6 +233,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7664608066525452545, guid: a1a96a4473a61aa419018fc7f0f590c3,
         type: 3}
+      propertyPath: timeFrame
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664608066525452545, guid: a1a96a4473a61aa419018fc7f0f590c3,
+        type: 3}
       propertyPath: maxPlayerDist
       value: 20
       objectReference: {fileID: 0}
@@ -244,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 7664608066525452545, guid: a1a96a4473a61aa419018fc7f0f590c3,
         type: 3}
       propertyPath: clownProjectileUp
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8293721924226975019, guid: a1a96a4473a61aa419018fc7f0f590c3,
         type: 3}
