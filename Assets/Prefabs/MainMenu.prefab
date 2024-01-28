@@ -203,6 +203,7 @@ MonoBehaviour:
   BackButton: {fileID: 1113963436753727627}
   Controls: {fileID: 209489660451820328}
   ControlInfo: {fileID: 8114730065207573457}
+  BadJoke: {fileID: 8300000, guid: 2759730d43dc5754099c9fa9a69ac782, type: 3}
 --- !u!1 &2720401810775376626
 GameObject:
   m_ObjectHideFlags: 0

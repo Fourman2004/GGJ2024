@@ -40,6 +40,8 @@ public class AI_Behaviour : MonoBehaviour
     public float clownProjectForcefulness, clownProjectileUp, timeFrame;
     public Transform actorToHarm;
     public Health playerHealth;
+    public AudioClip Shoot;
+    public AudioClip[] Death;
     int cooldown;
 
 
@@ -85,7 +87,7 @@ public class AI_Behaviour : MonoBehaviour
     /// </summary>
     public void calculate_speed()
     {
-        if (stats.health < 50)
+        if (stats.currentHealth < 50)
         {
             steps = (stats.speed * stats.SprintMultiplier) * Time.deltaTime;
         }
@@ -137,10 +139,12 @@ public class AI_Behaviour : MonoBehaviour
         else
         {
             transform.LookAt(actorToHarm.position);
+            AudioSource.PlayClipAtPoint(Shoot, transform.position);
             GameObject Clownjectile = Instantiate(Projectile, projectSpawnObj.transform.position, projectSpawnObj.transform.rotation);
             Rigidbody clownBody = Clownjectile.GetComponent<Rigidbody>();
             Vector3 clownForce = (projectSpawnObj.transform.forward * clownProjectForcefulness) + (transform.up * clownProjectileUp);
             clownBody.AddForce(clownForce, ForceMode.Impulse);
+            
             cooldown = 0;
         }
     }
@@ -184,6 +188,11 @@ public class AI_Behaviour : MonoBehaviour
         //Debug.Log("Projectile detected");
         if(!gameObject.GetComponent<Ai_stats>()) { return; }
 
-        stats.health -= WhoopiePieCannon.instance.weaponDamage;
+        stats.currentHealth -= WhoopiePieCannon.instance.weaponDamage;
+    }
+
+    private void OnDestroy()
+    {
+        AudioSource.PlayClipAtPoint(Death[Random.Range(1,4)], transform.position);
     }
 }
