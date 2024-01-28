@@ -53,23 +53,16 @@ public class WhoopiePieCannon : Weapons.WeaponController
         if(Player.instance.whippyCream < maxAmmoToAdd) // adds a partial mag
         {
             ammoToAdd = Player.instance.whippyCream;
-            base.Reload();
-            Player.instance.whippyCream -= ammoToAdd;
-            ReloadBar.instance.completedReload = false;
-            StartCoroutine(ReloadBar.instance.ShowReload(reloadTime));
-            
         }
 
         else 
         {
             ammoToAdd = maxAmmoToAdd;
-            base.Reload();
-            Player.instance.whippyCream -= ammoToAdd;
-            ReloadBar.instance.completedReload = false;
         }
 
-       
 
+        base.Reload();
+        Player.instance.whippyCream -= ammoToAdd;
         ReloadBar.instance.completedReload = false;
         StartCoroutine(ReloadBar.instance.ShowReload(reloadTime));
 
