@@ -500,6 +500,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c39c42ebd094f154b906aa4c2c6c70fb, type: 3}
+--- !u!114 &677005488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5082621160329722917, guid: 4b89d7650b9291b49815e14b2e5c5326,
+    type: 3}
+  m_PrefabInstance: {fileID: 1360745767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65dac345e4a8bbb49b6ed9ce6682e4d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &680069425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1195,6 +1207,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5082621160329722917, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082621160329722917, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: jumpForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082621160329722917, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: sprintMulitplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
         type: 3}
       propertyPath: m_RootOrder
@@ -1249,6 +1276,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305275092700220804, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionId
+      value: 5b87ef25-7369-42e5-b9f1-39fd6349d917
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 85fbb1b5-30b8-419f-bbd3-a05e7a8aad4f
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionName
+      value: Player/Sprint[/Keyboard/leftShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: Player/Jump[/Keyboard/space]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 677005488}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465199014490539065, guid: 4b89d7650b9291b49815e14b2e5c5326,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7414771771324228405, guid: 4b89d7650b9291b49815e14b2e5c5326, type: 3}
