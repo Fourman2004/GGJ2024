@@ -48,9 +48,9 @@ public class WhoopiePieCannon : Weapons.WeaponController
         if(weaponAmmo == weaponMagSize) { return; } // mag is already full
         if(Player.instance.whippyCream == 0) { return; } // no power up to reload with
 
-       
+        int maxAmmoToAdd = weaponMagSize - weaponAmmo;
 
-        if(Player.instance.whippyCream < 3) // adds a partial mag
+        if(Player.instance.whippyCream < maxAmmoToAdd) // adds a partial mag
         {
             ammoToAdd = Player.instance.whippyCream;
             base.Reload();
@@ -62,8 +62,13 @@ public class WhoopiePieCannon : Weapons.WeaponController
 
         else 
         {
-            Player.instance.whippyCream -= weaponMagSize;
+            ammoToAdd = maxAmmoToAdd;
+            base.Reload();
+            Player.instance.whippyCream -= ammoToAdd;
+            ReloadBar.instance.completedReload = false;
         }
+
+       
 
         ReloadBar.instance.completedReload = false;
         StartCoroutine(ReloadBar.instance.ShowReload(reloadTime));
