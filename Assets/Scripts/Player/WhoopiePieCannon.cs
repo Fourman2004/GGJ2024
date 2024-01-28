@@ -47,6 +47,7 @@ public class WhoopiePieCannon : Weapons.WeaponController
     {
         if(Player.instance.whippyCream == 0) { return; }
 
+        // supposed to reload 3 at a time?
         if(Player.instance.whippyCream <= 3)
         {
             ammoToChange = Player.instance.whippyCream;

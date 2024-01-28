@@ -25,6 +25,7 @@ public class Ai_stats : MonoBehaviour
         switch (health)
         {
             case 0:
+
                 Destroy(NPC_The_Guy);
                 break;
             case >= 75:

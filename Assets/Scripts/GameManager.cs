@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(EnemySpawner());
     }
+
+    private void Update()
+    {
+        
+    }
     public void ChangeScore(int amount)
     {
         score += amount;
