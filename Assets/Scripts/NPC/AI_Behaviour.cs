@@ -11,22 +11,36 @@ using System.Buffers;
 
 public class AI_Behaviour : MonoBehaviour
 {
+    //regular variables
     public Ai_stats stats;
     public Rigidbody body;
     Vector3 pos;
-    public Health health;
-    int cooldown;
 
+    //Movement Variables
+    //XEnd/ZEnd gets random -x,x/-z,z positions
+    //minPlayerDist/maxPlayerDist determine the distance the player needs to be in/out of for either attacks or determining new position
+    //steps determines speed
     [Header("Ai Movement ranges")]
     public float XEnd, ZEnd, minPlayerDist, maxPlayerDist;
     float steps;
 
+    //Enenmy variables
+    //hostile determines if the NPC is aggressive
+    //Melee determines if it will use ranged attacks
+    //GameObjects are for (in this order) Projectile to fire and where it will spawn
+    //collider for melee attacks
+    //floats determine arc and speed of prjectile when launched
+    //transform for player location
+    //playerHealth gets the player health script for damage
+    //int to not have the projectile shoot off every second
     [Header("AI hostility")]
     public bool hostile, melee;
     public GameObject Projectile, projectSpawnObj;
     public Collider Hurtbox;
     public float clownProjectForcefulness, clownProjectileUp, timeFrame;
     public Transform actorToHarm;
+    public Health playerHealth;
+    int cooldown;
 
 
     // Start is called before the first frame update
@@ -65,6 +79,10 @@ public class AI_Behaviour : MonoBehaviour
                 }
         }
     }
+
+    /// <summary>
+    /// calculates sprint/walk speed
+    /// </summary>
     public void calculate_speed()
     {
         if (stats.health < 50)
@@ -76,6 +94,12 @@ public class AI_Behaviour : MonoBehaviour
             steps = stats.speed * Time.deltaTime;
         }
     }
+
+    /// <summary>
+    /// find random location, calculates speed, if the distance is less than or equal to the maximum player distance, choose new location.
+    /// if hostile and ranged, shoot projectile (or decreases cooldown).
+    /// else it will move to it's new location.
+    ///</summary>
     void randomMove()
     {
 
@@ -98,6 +122,11 @@ public class AI_Behaviour : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// if the cooldown is not complete, will increment it until it can.
+    /// will the spawn porojectile, with arc and force, towards the player.
+    /// sets cooldown to 0
+    /// </summary>
     private void LaunchProjectile()
     {
         if (cooldown != timeFrame)
@@ -110,14 +139,16 @@ public class AI_Behaviour : MonoBehaviour
             transform.LookAt(actorToHarm.position);
             GameObject Clownjectile = Instantiate(Projectile, projectSpawnObj.transform.position, projectSpawnObj.transform.rotation);
             Rigidbody clownBody = Clownjectile.GetComponent<Rigidbody>();
-            Debug.Log(clownBody);
             Vector3 clownForce = (projectSpawnObj.transform.forward * clownProjectForcefulness) + (transform.up * clownProjectileUp);
             clownBody.AddForce(clownForce, ForceMode.Impulse);
             cooldown = 0;
         }
     }
 
- 
+ /// <summary>
+ /// gets player position
+ /// if distance is greater than minimum, will move towards player.
+ /// </summary>
     void MoveTowardsPlayer()
     {
         transform.LookAt(actorToHarm);
@@ -131,10 +162,10 @@ public class AI_Behaviour : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && health.currentHealth != 0)
+        if (collision.gameObject.tag == "Player" && playerHealth.currentHealth != 0)
         {
-            health.currentHealth = health.currentHealth - stats.meleeDamage;
-            if (health.currentHealth <= 0)
+            playerHealth.currentHealth = playerHealth.currentHealth - stats.meleeDamage;
+            if (playerHealth.currentHealth <= 0)
             {
                 Destroy(GameObject.FindWithTag("Player"));
             }
@@ -153,6 +184,6 @@ public class AI_Behaviour : MonoBehaviour
         //Debug.Log("Projectile detected");
         if(!gameObject.GetComponent<Ai_stats>()) { return; }
 
-        gameObject.GetComponent<Ai_stats>().health -= WhoopiePieCannon.instance.weaponDamage;
+        stats.health -= WhoopiePieCannon.instance.weaponDamage;
     }
 }
