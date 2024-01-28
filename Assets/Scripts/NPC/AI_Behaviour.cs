@@ -51,13 +51,18 @@ public class AI_Behaviour : MonoBehaviour
         body = GetComponent<Rigidbody>();
         Hurtbox = GetComponent<Collider>();
         pos = transform.position;
-        int range = Random.Range(0,1);
+        int range = Random.Range(0,2);
         switch (range) {
             case 0:
-            melee = true; 
+                hostile = true;
+                melee = true; 
             break;
             case 1:
+                hostile= true;
             melee= false;
+                break;
+            case 2:
+                hostile = false; 
                 break;
         }
 
