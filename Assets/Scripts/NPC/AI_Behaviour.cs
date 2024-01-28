@@ -85,7 +85,7 @@ public class AI_Behaviour : MonoBehaviour
     /// </summary>
     public void calculate_speed()
     {
-        if (stats.health < 50)
+        if (stats.currentHealth < 50)
         {
             steps = (stats.speed * stats.SprintMultiplier) * Time.deltaTime;
         }
@@ -184,6 +184,6 @@ public class AI_Behaviour : MonoBehaviour
         //Debug.Log("Projectile detected");
         if(!gameObject.GetComponent<Ai_stats>()) { return; }
 
-        stats.health -= WhoopiePieCannon.instance.weaponDamage;
+        stats.currentHealth -= WhoopiePieCannon.instance.weaponDamage;
     }
 }

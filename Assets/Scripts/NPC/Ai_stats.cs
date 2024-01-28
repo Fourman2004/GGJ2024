@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ai_stats : MonoBehaviour
 {
-    public float speed, health, SprintMultiplier;
+    public float speed, maxHealth, SprintMultiplier, currentHealth;
     public int meleeDamage, rangeDamage;
     public GameObject NPC_The_Guy;
 
@@ -16,19 +16,21 @@ public class Ai_stats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         NPC = GetComponent<NPCAnimation>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (health)
+        int percentageOfHealth = Mathf.FloorToInt((currentHealth / maxHealth) * 100);
+        switch (percentageOfHealth)
         {
             case 0:
                 GameManager.instance.killCount++;
                 Destroy(NPC_The_Guy);
                 break;
-            case >= 75:
+            case >= 100:
                 NPC.isWalking = true;
                 NPC.isRunning = false;
                 break;

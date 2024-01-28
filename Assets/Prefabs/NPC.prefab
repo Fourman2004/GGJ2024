@@ -196,11 +196,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 2600843433914518}
   body: {fileID: 8293721924226975019}
-  XEnd: 1000
-  ZEnd: 1000
+  XEnd: 20
+  ZEnd: 20
   minPlayerDist: 0
-  maxPlayerDist: 0
-  hostile: 0
+  maxPlayerDist: 5
+  hostile: 1
   melee: 0
   Projectile: {fileID: 2004000248194216528, guid: 370b849feaa8467428e125153f73f7f5,
     type: 3}
@@ -224,9 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86350bffebe698e4681205ac96d58e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
-  health: 100
+  speed: 1
+  maxHealth: 100
   SprintMultiplier: 2
+  currentHealth: 0
   meleeDamage: 0
   rangeDamage: 0
   NPC_The_Guy: {fileID: 2847194442442900215}
