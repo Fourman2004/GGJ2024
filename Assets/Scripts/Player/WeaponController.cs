@@ -23,6 +23,7 @@ namespace Weapons
         private IEnumerator coroutine;
         protected int ammoToChange;
         private bool gunReloading = false;
+        public int weaponDamage;
 
         // Start is called before the first frame update
         protected virtual void Start()

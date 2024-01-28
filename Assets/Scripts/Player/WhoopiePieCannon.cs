@@ -5,18 +5,28 @@ using UnityEngine;
 
 public class WhoopiePieCannon : Weapons.WeaponController
 {
+    public static WhoopiePieCannon instance;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        if (instance == null) instance = this;
+        else
+        {
+            Destroy(this);
+            return;
+        }
+        DontDestroyOnLoad(this);
     }
 
     protected override void SetProperties()
     {
         weaponMagSize = 3;
         shootDelay = 0.7f;
-        throwForce = 25;
-        throwUpForce = 5;
+        throwForce = 20;
+        throwUpForce = 3;
+        weaponDamage = 30;
     }
 
     // Update is called once per frame

@@ -145,4 +145,14 @@ public class AI_Behaviour : MonoBehaviour
             Physics.IgnoreCollision(collision.collider, Hurtbox);
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        //Debug.Log("Collision detected");
+        if (!other.gameObject.CompareTag("Projectile")) { return; }
+        //Debug.Log("Projectile detected");
+        if(!gameObject.GetComponent<Ai_stats>()) { return; }
+
+        gameObject.GetComponent<Ai_stats>().health -= WhoopiePieCannon.instance.weaponDamage;
+    }
 }
