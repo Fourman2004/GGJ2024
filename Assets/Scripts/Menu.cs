@@ -10,11 +10,13 @@ public class Menu : MonoBehaviour
 {
     public Button StartButton, QuitButton, BackButton, Controls;
     public Text ControlInfo;
+    public AudioClip BadJoke;
 
     // Start is called before the first frame update
     void Start()
     {
        Cursor.visible = true;
+       AudioSource.PlayClipAtPoint(BadJoke,ControlInfo.gameObject.transform.position);
     }
 
     // Update is called once per frame
