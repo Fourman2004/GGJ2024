@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int score = 0;
+    public int killCount = 0;
 
     public float spawnDelay = 1f;
 
@@ -25,6 +26,15 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(EnemySpawner());
+    }
+
+    private void Update()
+    {
+        if (killCount % 5 == 0 && killCount != 0 && canSpawn == true)
+        {
+            Instantiate(boss, bossSpawnPoint.position, bossSpawnPoint.rotation);
+            canSpawn = false;
+        }
     }
     public void ChangeScore(int amount)
     {
