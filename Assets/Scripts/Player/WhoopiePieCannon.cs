@@ -26,7 +26,7 @@ public class WhoopiePieCannon : Weapons.WeaponController
         shootDelay = 0.7f;
         throwForce = 20;
         throwUpForce = 3;
-        weaponDamage = 30;
+        weaponDamage = 50;
     }
 
     // Update is called once per frame

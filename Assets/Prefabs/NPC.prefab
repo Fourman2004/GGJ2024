@@ -196,11 +196,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 2600843433914518}
   body: {fileID: 8293721924226975019}
-  XEnd: 1000
-  ZEnd: 1000
-  minPlayerDist: 10
-  maxPlayerDist: 20
-  hostile: 0
+  XEnd: 20
+  ZEnd: 20
+  minPlayerDist: 0
+  maxPlayerDist: 5
+  hostile: 1
   melee: 0
   Projectile: {fileID: 2004000248194216528, guid: 370b849feaa8467428e125153f73f7f5,
     type: 3}
@@ -212,12 +212,6 @@ MonoBehaviour:
   actorToHarm: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
     type: 3}
   playerHealth: {fileID: 0}
-  Shoot: {fileID: 8300000, guid: f28381ca548522b4989065772d9692e9, type: 3}
-  Death:
-  - {fileID: 8300000, guid: 5a5a34ed7537d7f40910813d97b697d2, type: 3}
-  - {fileID: 8300000, guid: 7fba03fa3a933cf48a1a13e2ee6b0151, type: 3}
-  - {fileID: 8300000, guid: 2174166eb34366348a8e2e916ffa4cc9, type: 3}
-  - {fileID: 8300000, guid: 06e3a23c6446bce4d884f95f16aa202c, type: 3}
 --- !u!114 &2600843433914518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,9 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86350bffebe698e4681205ac96d58e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
-  health: 100
+  speed: 1
+  maxHealth: 100
   SprintMultiplier: 2
+  currentHealth: 0
   meleeDamage: 0
   rangeDamage: 0
   NPC_The_Guy: {fileID: 2847194442442900215}

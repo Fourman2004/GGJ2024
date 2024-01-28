@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneTemplate;
+//using UnityEditor.SceneTemplate;
 using UnityEngine.AI;
 using UnityEngine;
-using UnityEditorInternal;
+//using UnityEditorInternal;
 using UnityEditor;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 using UnityEngine.UIElements;
 using System.Buffers;
 
@@ -97,7 +97,7 @@ public class AI_Behaviour : MonoBehaviour
     /// </summary>
     public void calculate_speed()
     {
-        if (stats.health < 50)
+        if (stats.currentHealth < 50)
         {
             steps = (stats.speed * stats.SprintMultiplier) * Time.deltaTime;
         }
@@ -198,7 +198,7 @@ public class AI_Behaviour : MonoBehaviour
         //Debug.Log("Projectile detected");
         if(!gameObject.GetComponent<Ai_stats>()) { return; }
 
-        stats.health -= WhoopiePieCannon.instance.weaponDamage;
+        stats.currentHealth -= WhoopiePieCannon.instance.weaponDamage;
     }
 
     private void OnDestroy()
