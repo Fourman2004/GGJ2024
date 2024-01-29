@@ -187,6 +187,7 @@ public class AI_Behaviour : MonoBehaviour
                 if (playerHealth.currentHealth <= 0)
                 {
                     Destroy(GameObject.FindWithTag("Player"));
+                    Application.Quit();
                 }
                 Hitplayer = true;
             }
