@@ -5,14 +5,14 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int maxHealth = 150;
-    public int currentHealth = 150;
+    public int currentHealth;
 
     [Header("Player HUD Only")]
     public HealthUI healthUI;
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = currentHealth;
+        currentHealth = maxHealth;
     }
 
     public void ChangeHealth(int amount)

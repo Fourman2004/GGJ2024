@@ -22,7 +22,7 @@ public class AI_Behaviour : MonoBehaviour
     //steps determines speed
     [Header("Ai Movement ranges")]
     public float XEnd, ZEnd, minPlayerDist, maxPlayerDist;
-    float steps;
+    public float steps;
 
     //Enenmy variables
     //hostile determines if the NPC is aggressive
@@ -35,14 +35,15 @@ public class AI_Behaviour : MonoBehaviour
     //int to not have the projectile shoot off every second
     [Header("AI hostility")]
     public bool hostile, melee;
-    public GameObject Projectile, projectSpawnObj;
+    public GameObject Projectile, projectSpawnObj, Player;
     public Collider Hurtbox;
     public float clownProjectForcefulness, clownProjectileUp, timeFrame;
-    public Transform actorToHarm;
-    public Health playerHealth;
+    Vector3 playerLocal;
+    Health playerHealth;
     public AudioClip Shoot;
     public AudioClip[] Death;
     int cooldown;
+    bool Hitplayer;
 
 
     // Start is called before the first frame update
@@ -50,26 +51,15 @@ public class AI_Behaviour : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         Hurtbox = GetComponent<Collider>();
+        Player = GameObject.FindWithTag("Player");
+        playerHealth = Player.GetComponent<Health>();
         pos = transform.position;
-        int range = Random.Range(0,2);
-        switch (range) {
-            case 0:
-                hostile = true;
-                melee = true; 
-            break;
-            case 1:
-                hostile= true;
-            melee= false;
-                break;
-            case 2:
-                hostile = false; 
-                break;
-        }
+      
+             
+   }
 
-    }
-
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
         switch (hostile)
         {
@@ -82,8 +72,9 @@ public class AI_Behaviour : MonoBehaviour
             case true:
                 {
                     if (melee)
-                    {
+                    {                    
                         MoveTowardsPlayer();
+                        
                     }
                     else
                     {
@@ -111,6 +102,12 @@ public class AI_Behaviour : MonoBehaviour
             steps = stats.speed * Time.deltaTime;
         }
     }
+
+    public void LookForPlayer()
+    {
+        playerLocal = GameObject.FindWithTag("Player").transform.position;
+    }
+
 
     /// <summary>
     /// find random location, calculates speed, if the distance is less than or equal to the maximum player distance, choose new location.
@@ -149,11 +146,10 @@ public class AI_Behaviour : MonoBehaviour
         if (cooldown != timeFrame)
         {
             cooldown++;
-            Debug.Log(cooldown);
         }
         else
         {
-            transform.LookAt(actorToHarm.position);
+            transform.LookAt(playerLocal);
             AudioSource.PlayClipAtPoint(Shoot, transform.position);
             GameObject Clownjectile = Instantiate(Projectile, projectSpawnObj.transform.position, projectSpawnObj.transform.rotation);
             Rigidbody clownBody = Clownjectile.GetComponent<Rigidbody>();
@@ -170,10 +166,11 @@ public class AI_Behaviour : MonoBehaviour
  /// </summary>
     void MoveTowardsPlayer()
     {
-        transform.LookAt(actorToHarm);
+        LookForPlayer();
+        transform.LookAt(playerLocal);
         calculate_speed();
 
-        if (Vector3.Distance(transform.position, actorToHarm.position) >= minPlayerDist)
+        if (Vector3.Distance(transform.position, playerLocal) >= minPlayerDist)
         {
             transform.position += transform.forward * steps;
         }
@@ -181,33 +178,40 @@ public class AI_Behaviour : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && playerHealth.currentHealth != 0)
-        {
-            playerHealth.currentHealth = playerHealth.currentHealth - stats.meleeDamage;
-            if (playerHealth.currentHealth <= 0)
+        
+           if(!Hitplayer)
+            if (collision.gameObject.tag == "Player" && playerHealth.currentHealth != 0)
             {
-                Destroy(GameObject.FindWithTag("Player"));
+                Debug.Log("Hit Player");
+                playerHealth.currentHealth = playerHealth.currentHealth - stats.meleeDamage;
+                if (playerHealth.currentHealth <= 0)
+                {
+                    Destroy(GameObject.FindWithTag("Player"));
+                }
+                Hitplayer = true;
             }
 
-        }
-        else
-        {
-            Physics.IgnoreCollision(collision.collider, Hurtbox);
-        }
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Hitplayer = false;
     }
 
     private void OnCollisionEnter(Collision other)
-    {
-        //Debug.Log("Collision detected");
-        if (!other.gameObject.CompareTag("Projectile")) { return; }
-        //Debug.Log("Projectile detected");
-        if(!gameObject.GetComponent<Ai_stats>()) { return; }
+        {
+            //Debug.Log("Collision detected");
+            if (!other.gameObject.CompareTag("Projectile")) { return; }
+            //Debug.Log("Projectile detected");
+            if (!gameObject.GetComponent<Ai_stats>()) { return; }
 
-        stats.currentHealth -= WhoopiePieCannon.instance.weaponDamage;
-    }
+            stats.currentHealth -= WhoopiePieCannon.instance.weaponDamage;
+        }
 
-    private void OnDestroy()
-    {
-       // AudioSource.PlayClipAtPoint(Death[Random.Range(1,4)], transform.position);
-    }
+
+        private void OnDestroy()
+        {
+            // AudioSource.PlayClipAtPoint(Death[Random.Range(1,4)], transform.position);
+        }
 }

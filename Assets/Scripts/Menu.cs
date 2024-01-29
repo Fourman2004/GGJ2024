@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public Button StartButton, QuitButton, BackButton, Controls;
-    public Text ControlInfo;
+    public Image ControlInfo;
     public AudioClip BadJoke;
 
     // Start is called before the first frame update

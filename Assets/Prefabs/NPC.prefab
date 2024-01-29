@@ -47,17 +47,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 329.6789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000100016594
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 109.364
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd3d7460bf627d047816bf841d3636ba,
         type: 3}
@@ -198,9 +198,10 @@ MonoBehaviour:
   body: {fileID: 8293721924226975019}
   XEnd: 20
   ZEnd: 20
-  minPlayerDist: 0
-  maxPlayerDist: 5
-  hostile: 1
+  minPlayerDist: 10
+  maxPlayerDist: 15
+  steps: 0
+  hostile: 0
   melee: 0
   Projectile: {fileID: 2004000248194216528, guid: 370b849feaa8467428e125153f73f7f5,
     type: 3}
@@ -209,9 +210,15 @@ MonoBehaviour:
   clownProjectForcefulness: 10
   clownProjectileUp: 10
   timeFrame: 3
-  actorToHarm: {fileID: 5573399710366842186, guid: 4b89d7650b9291b49815e14b2e5c5326,
+  actorToHarm: {fileID: 483714381221802748, guid: 4b89d7650b9291b49815e14b2e5c5326,
     type: 3}
   playerHealth: {fileID: 0}
+  Shoot: {fileID: 8300000, guid: f28381ca548522b4989065772d9692e9, type: 3}
+  Death:
+  - {fileID: 8300000, guid: 5a5a34ed7537d7f40910813d97b697d2, type: 3}
+  - {fileID: 8300000, guid: 7fba03fa3a933cf48a1a13e2ee6b0151, type: 3}
+  - {fileID: 8300000, guid: 2174166eb34366348a8e2e916ffa4cc9, type: 3}
+  - {fileID: 8300000, guid: 06e3a23c6446bce4d884f95f16aa202c, type: 3}
 --- !u!114 &2600843433914518
 MonoBehaviour:
   m_ObjectHideFlags: 0
